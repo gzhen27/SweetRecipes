@@ -15,3 +15,12 @@ extension [Meal] {
         return result.meals
     }
 }
+
+extension MealDetail {
+    static var previewData: MealDetail {
+        let url = Bundle.main.url(forResource: "MealDetailData", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let result = try! JSONDecoder().decode(ResultWrapper<MealDetail>.self, from: data)
+        return result.meals[0]
+    }
+}
