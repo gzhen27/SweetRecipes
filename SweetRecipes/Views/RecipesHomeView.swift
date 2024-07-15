@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  RecipesHomeView.swift
 //  SweetRecipes
 //
 //  Created by G Zhen on 7/14/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct RecipesHomeView: View {
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +20,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    RecipesHomeView()
 }

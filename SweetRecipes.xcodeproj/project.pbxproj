@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EB38698C2C44ACB0004C246C /* SweetRecipesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38698B2C44ACB0004C246C /* SweetRecipesApp.swift */; };
-		EB38698E2C44ACB0004C246C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38698D2C44ACB0004C246C /* ContentView.swift */; };
+		EB38698E2C44ACB0004C246C /* RecipesHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38698D2C44ACB0004C246C /* RecipesHomeView.swift */; };
 		EB3869902C44ACB1004C246C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB38698F2C44ACB1004C246C /* Assets.xcassets */; };
 		EB3869932C44ACB1004C246C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB3869922C44ACB1004C246C /* Preview Assets.xcassets */; };
 		EB38699D2C44ACB1004C246C /* SweetRecipesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB38699C2C44ACB1004C246C /* SweetRecipesTests.swift */; };
@@ -36,7 +36,7 @@
 /* Begin PBXFileReference section */
 		EB3869882C44ACB0004C246C /* SweetRecipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweetRecipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB38698B2C44ACB0004C246C /* SweetRecipesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweetRecipesApp.swift; sourceTree = "<group>"; };
-		EB38698D2C44ACB0004C246C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		EB38698D2C44ACB0004C246C /* RecipesHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesHomeView.swift; sourceTree = "<group>"; };
 		EB38698F2C44ACB1004C246C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB3869922C44ACB1004C246C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EB3869982C44ACB1004C246C /* SweetRecipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SweetRecipesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,8 +94,11 @@
 		EB38698A2C44ACB0004C246C /* SweetRecipes */ = {
 			isa = PBXGroup;
 			children = (
+				EB3869B82C44AE3D004C246C /* Services */,
+				EB3869B72C44AE37004C246C /* Models */,
+				EB3869B62C44AE31004C246C /* ViewModels */,
+				EB3869B52C44AE2C004C246C /* Views */,
 				EB38698B2C44ACB0004C246C /* SweetRecipesApp.swift */,
-				EB38698D2C44ACB0004C246C /* ContentView.swift */,
 				EB38698F2C44ACB1004C246C /* Assets.xcassets */,
 				EB3869912C44ACB1004C246C /* Preview Content */,
 			);
@@ -125,6 +128,35 @@
 				EB3869A82C44ACB1004C246C /* SweetRecipesUITestsLaunchTests.swift */,
 			);
 			path = SweetRecipesUITests;
+			sourceTree = "<group>";
+		};
+		EB3869B52C44AE2C004C246C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB38698D2C44ACB0004C246C /* RecipesHomeView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EB3869B62C44AE31004C246C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EB3869B72C44AE37004C246C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		EB3869B82C44AE3D004C246C /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB38698E2C44ACB0004C246C /* ContentView.swift in Sources */,
+				EB38698E2C44ACB0004C246C /* RecipesHomeView.swift in Sources */,
 				EB38698C2C44ACB0004C246C /* SweetRecipesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,8 +459,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -455,8 +487,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
