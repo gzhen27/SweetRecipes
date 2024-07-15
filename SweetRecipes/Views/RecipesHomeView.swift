@@ -8,17 +8,35 @@
 import SwiftUI
 
 struct RecipesHomeView: View {
+    let meals: [Meal]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        VStack(spacing: 2) {
+            AsyncImage(url: URL(string: meals[0].strMealThumb)) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } placeholder: {
+                ZStack {
+                    Color.gray
+                        .opacity(0.2)
+                    ProgressView()
+                }
+            }
+            .frame(width: 200, height: 200)
+            HStack() {
+                Text(meals[0].strMeal)
+                    .font(.footnote)
+                    .bold()
+                    .frame(width: 200, height: 50)
+            }
+            .background(Color.red.opacity(0.1))
         }
-        .padding()
+        .frame(width: 200, height: 250)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
 #Preview {
-    RecipesHomeView()
+    RecipesHomeView(meals: .previewData)
 }

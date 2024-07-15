@@ -11,7 +11,8 @@ import SwiftUI
 struct SweetRecipesApp: App {
     var body: some Scene {
         WindowGroup {
-            RecipesHomeView()
+            //TODO: remove the preview data
+            RecipesHomeView(meals: .previewData)
         }
     }
 }
