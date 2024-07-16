@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct RecipesHomeView: View {
-    let meals: [Meal]
+    @ObservedObject private var model = MealViewModel()
     
     var body: some View {
         NavigationView {
             GeometryReader { reader in
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
-                        ForEach(meals, id: \.idMeal) { meal in
+                        ForEach(model.meals, id: \.idMeal) { meal in
                             NavigationLink {
                                 RecipeDetailView(meal: meal)
                             } label: {
@@ -54,9 +54,12 @@ struct RecipesHomeView: View {
             }
             .navigationTitle("Sweet Recipes")
         }
+        .task {
+            try? await model.fetchMeals()
+        }
     }
 }
 
 #Preview {
-    RecipesHomeView(meals: .previewData)
+    RecipesHomeView()
 }
