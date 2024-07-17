@@ -11,7 +11,7 @@ struct RecipeDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @ObservedObject var model = MealDetailViewModel()
     
-    let meal: Meal
+    let id: String
     
     var body: some View {
         VStack {
@@ -84,12 +84,12 @@ struct RecipeDetailView: View {
             Text(model.errorMessage)
         }
         .task {
-            await model.fetch(by: meal.idMeal)
+            await model.fetch(by: id)
         }
     }
 }
 
 #Preview {
     //TODO: refine the preview data?
-    RecipeDetailView(meal: [Meal].previewData[0])
+    RecipeDetailView(id: [Meal].previewData[0].id)
 }

@@ -15,12 +15,12 @@ struct RecipesHomeView: View {
             GeometryReader { reader in
                 ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: [GridItem(), GridItem()], spacing: 8) {
-                        ForEach(model.meals, id: \.idMeal) { meal in
+                        ForEach(model.meals, id: \.id) { meal in
                             NavigationLink {
-                                RecipeDetailView(meal: meal)
+                                RecipeDetailView(id: meal.id)
                             } label: {
                                 VStack(spacing: 2) {
-                                    AsyncImage(url: URL(string: meal.strMealThumb)) { image in
+                                    AsyncImage(url: URL(string: meal.imageUrl)) { image in
                                         image
                                             .resizable()
                                             .aspectRatio(contentMode: .fit)
@@ -33,7 +33,7 @@ struct RecipesHomeView: View {
                                     }
                                     .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20)
                                     HStack() {
-                                        Text(meal.strMeal)
+                                        Text(meal.name)
                                             .font(.footnote)
                                             .fontWeight(.medium)
                                             .padding(.horizontal)

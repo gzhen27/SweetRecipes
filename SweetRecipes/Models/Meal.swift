@@ -8,7 +8,21 @@
 import Foundation
 
 struct Meal: Codable {
-    let idMeal: String
-    let strMeal: String
-    let strMealThumb: String
+    // Since the types info are missing from the API docs, we will use all optionals to avoid any null values.
+    // Theoretically, the idMeal and strMeal values should not be null, but we can't fully reply on the APIs, and handle all edge cases on our ends.
+    let idMeal: String?
+    let strMeal: String?
+    let strMealThumb: String?
+    
+    var id: String {
+        idMeal != nil ? idMeal! : "unknown"
+    }
+    
+    var name: String {
+        strMeal != nil ? strMeal! : "unknown"
+    }
+    
+    var imageUrl: String {
+        strMealThumb != nil ? strMealThumb! : "unknown"
+    }
 }
