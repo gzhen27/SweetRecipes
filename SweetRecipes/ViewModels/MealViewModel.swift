@@ -23,7 +23,10 @@ class MealViewModel: ObservableObject {
         let request = APIRequest(resource: resource)
         Task {
             do {
-                meals = try await request.excute()
+                let mealsResult = try await request.excute()
+                meals = mealsResult
+                    .filter { $0.idMeal != nil && $0.strMeal != nil && !$0.id.isEmpty && !$0.name.isEmpty}
+                    .sorted { $0.name < $1.name }
             } catch let error as RequestError {
                 showAlert = true
                 errorMessage = error.localizedDescription

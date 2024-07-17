@@ -15,14 +15,14 @@ struct Meal: Codable {
     let strMealThumb: String?
     
     var id: String {
-        idMeal != nil ? idMeal! : "unknown"
+        idMeal != nil ? idMeal!.trimmingCharacters(in: .whitespaces) : "unknown"
     }
     
     var name: String {
-        strMeal != nil ? strMeal! : "unknown"
+        strMeal != nil ? strMeal!.trimmingCharacters(in: .whitespaces) : "unknown"
     }
     
     var imageUrl: String {
-        strMealThumb != nil ? strMealThumb! : "unknown"
+        strMealThumb != nil ? strMealThumb!.trimmingCharacters(in: .whitespaces) : "unknown"
     }
 }
