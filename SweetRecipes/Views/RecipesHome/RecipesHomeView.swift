@@ -77,20 +77,19 @@ struct RecipesHomeView: View {
             .toolbar {
                 Button {
                     Task {
-                        await model.refresh()
+                        await model.reload()
                     }
                 } label: {
                     Image(systemName: "arrow.clockwise")
                         .frame(width: 38, height: 38)
                 }
-
             }
         }
         .task {
-            await model.refresh()
+            await model.reload()
         }
         .refreshable {
-            await model.refresh()
+            await model.reload()
         }
     }
 }

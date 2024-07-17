@@ -7,14 +7,32 @@
 
 import Foundation
 
-@MainActor
 class MealViewModel: ObservableObject {
     @Published private(set) var meals: [Meal] = []
     @Published private(set) var isLoading = false
     @Published var showAlert = false
     var errorMessage = ""
     
-    private func fetchMeals(by category: String? = nil) async {
+    //MARK: - Async functions
+    @MainActor
+    func reload() async {
+        if meals.isEmpty {
+            await fetch()
+        }
+    }
+    
+    //MARK: - Helper functions
+    func sanitize(_ meals: [Meal]) -> [Meal] {
+        guard !meals.isEmpty else { return [] }
+        
+        return meals
+            .filter { $0.idMeal != nil && $0.strMeal != nil && !$0.id.isEmpty && !$0.name.isEmpty}
+            .sorted { $0.name < $1.name }
+    }
+    
+    //MARK: - Private functions
+    @MainActor
+    private func fetch(by category: String? = nil) async {
         guard !isLoading else { return }
         defer { isLoading = false }
 
@@ -24,9 +42,7 @@ class MealViewModel: ObservableObject {
         Task {
             do {
                 let mealsResult = try await request.excute()
-                meals = mealsResult
-                    .filter { $0.idMeal != nil && $0.strMeal != nil && !$0.id.isEmpty && !$0.name.isEmpty}
-                    .sorted { $0.name < $1.name }
+                meals = sanitize(mealsResult)
             } catch let error as RequestError {
                 showAlert = true
                 errorMessage = error.localizedDescription
@@ -34,12 +50,6 @@ class MealViewModel: ObservableObject {
                 showAlert = true
                 errorMessage = "An unknown error has occurred."
             }
-        }
-    }
-    
-    func refresh() async {
-        if meals.isEmpty {
-            await fetchMeals()
         }
     }
 }

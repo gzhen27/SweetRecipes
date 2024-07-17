@@ -13,8 +13,14 @@ class MealDetailViewModel: ObservableObject {
     @Published var showAlert = false
     var errorMessage = ""
     
+    //MARK: - Async functions
+    func reload(by id: String) async {
+        await fetch(by: id)
+    }
+    
+    //MARK: - Private functions
     @MainActor
-    func fetch(by id: String) async {
+    private func fetch(by id: String) async {
         guard !isLoading else { return }
         defer { isLoading = false }
         

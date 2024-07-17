@@ -98,7 +98,7 @@ struct RecipeDetailView: View {
             Text(model.errorMessage)
         }
         .task {
-            await model.fetch(by: id)
+            await model.reload(by: id)
         }
     }
 }
