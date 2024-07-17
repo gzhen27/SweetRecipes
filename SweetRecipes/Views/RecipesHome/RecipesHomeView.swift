@@ -60,10 +60,23 @@ struct RecipesHomeView: View {
             } message: {
                 Text(model.errorMessage)
             }
+            .toolbar {
+                Button {
+                    Task {
+                        await model.refresh()
+                    }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                        .frame(width: 38, height: 38)
+                }
 
+            }
         }
         .task {
-            await model.fetchMeals()
+            await model.refresh()
+        }
+        .refreshable {
+            await model.refresh()
         }
     }
 }

@@ -22,15 +22,17 @@ class MealDetailViewModel: ObservableObject {
         let resource = MealDetailResource(id: id)
         let request = APIRequest(resource:  resource)
         
-        do {
-            let result = try await request.excute()
-            mealDetail = result[0]
-        } catch let error as RequestError {
-            showAlert = true
-            errorMessage = error.localizedDescription
-        } catch {
-            showAlert = true
-            errorMessage = "An unknown error has occurred."
+        Task {
+            do {
+                let result = try await request.excute()
+                mealDetail = result[0]
+            } catch let error as RequestError {
+                showAlert = true
+                errorMessage = error.localizedDescription
+            } catch {
+                showAlert = true
+                errorMessage = "An unknown error has occurred."
+            }
         }
     }
 }
