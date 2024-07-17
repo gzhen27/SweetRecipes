@@ -27,6 +27,7 @@
 		EB9645B72C4710F60070B9D3 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645B62C4710F60070B9D3 /* NetworkRequest.swift */; };
 		EB9645B92C4712AF0070B9D3 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645B82C4712AF0070B9D3 /* APIRequest.swift */; };
 		EB9645BB2C47146C0070B9D3 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645BA2C47146C0070B9D3 /* MealViewModel.swift */; };
+		EB9645BD2C4723000070B9D3 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645BC2C4723000070B9D3 /* RequestError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		EB9645B62C4710F60070B9D3 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		EB9645B82C4712AF0070B9D3 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		EB9645BA2C47146C0070B9D3 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
+		EB9645BC2C4723000070B9D3 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				EB9645B02C46FFF50070B9D3 /* APIResource.swift */,
 				EB9645B82C4712AF0070B9D3 /* APIRequest.swift */,
 				EB9645B62C4710F60070B9D3 /* NetworkRequest.swift */,
+				EB9645BC2C4723000070B9D3 /* RequestError.swift */,
 				EB9645B32C4708AE0070B9D3 /* ModelResources */,
 			);
 			path = Services;
@@ -354,6 +357,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB9645BD2C4723000070B9D3 /* RequestError.swift in Sources */,
 				EB3869C42C44B6F4004C246C /* ResultWrapper.swift in Sources */,
 				EB9645BB2C47146C0070B9D3 /* MealViewModel.swift in Sources */,
 				EB8614EE2C458DBF001C80C0 /* RecipeDetailView.swift in Sources */,

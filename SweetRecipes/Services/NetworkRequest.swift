@@ -16,8 +16,13 @@ protocol NetworkRequest {
 
 extension NetworkRequest {
     func load(_ url: URL) async throws -> Model {
-        //TODO: handle errors 
-        let (data, _) = try await URLSession.shared.data(from: url)
-        return try decode(data)
+        do {
+            let (data, res) = try await URLSession.shared.data(from: url)
+            guard let res = res as? HTTPURLResponse else { throw RequestError.serverError }
+            guard res.statusCode == 200 else { throw RequestError.invalidResponseStatus }
+            return try decode(data)
+        } catch {
+            throw RequestError.dataTaskError(error.localizedDescription)
+        }
     }
 }

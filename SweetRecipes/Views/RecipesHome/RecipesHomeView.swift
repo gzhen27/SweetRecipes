@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipesHomeView: View {
-    @ObservedObject private var model = MealViewModel()
+    @StateObject private var model = MealViewModel()
     
     var body: some View {
         NavigationView {
@@ -53,9 +53,17 @@ struct RecipesHomeView: View {
                 .ignoresSafeArea(edges: .bottom)
             }
             .navigationTitle("Sweet Recipes")
+            .alert("Error", isPresented: $model.showAlert) {
+                Button("OK") {
+                    model.errorMessage = ""
+                }
+            } message: {
+                Text(model.errorMessage)
+            }
+
         }
         .task {
-            try? await model.fetchMeals()
+            await model.fetchMeals()
         }
     }
 }

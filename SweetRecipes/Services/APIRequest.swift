@@ -17,13 +17,16 @@ class APIRequest<Resource: APIResource> {
 
 extension APIRequest: NetworkRequest {
     func decode(_ data: Data) throws -> [Resource.Model] {
-        //TODO: handle errors
-        let wrapper = try JSONDecoder().decode(ResultWrapper<Resource.Model>.self, from: data)
-        return wrapper.meals
+        do {
+            let wrapper = try JSONDecoder().decode(ResultWrapper<Resource.Model>.self, from: data)
+            return wrapper.meals
+        } catch {
+            throw RequestError.decodingError
+        }
     }
     
     func excute() async throws -> [Resource.Model] {
-        //TODO: handle errors and the optional url
-        try await load(resource.url!)
+        guard let url = resource.url else { throw RequestError.invalidURL }
+        return try await load(url)
     }
 }
