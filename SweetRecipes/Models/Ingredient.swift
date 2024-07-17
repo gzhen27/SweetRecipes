@@ -8,7 +8,7 @@
 import Foundation
 
 struct Ingredient: Identifiable {
-    let id: Int
+    let id = UUID()
     let ingredient: String
     let measure: String
 }

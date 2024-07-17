@@ -9,50 +9,52 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var model = MealDetailViewModel()
     
     let meal: Meal
-    //TODO: get data from API.
-    let mealDetail: MealDetail = .previewData
     
     var body: some View {
         VStack {
             GeometryReader { reader in
                 ZStack {
-                    VStack(spacing: 0) {
-                        AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } placeholder: {
-                            ZStack {
-                                Color.gray
-                                    .opacity(0.1)
-                                ProgressView()
-                                    .controlSize(.large)
-                            }
-                        }
-                        .frame(width: reader.size.width, height: 250)
-                        .clipShape(RoundedRectangle(cornerRadius: 18))
-                        ScrollView {
-                            VStack(alignment: .leading, spacing: 16) {
-                                Text(mealDetail.strMeal)
-                                    .font(.headline)
-                                    .fontWeight(.bold)
-                                Text(mealDetail.strInstructions.trimmingCharacters(in: .whitespacesAndNewlines))
-                                Text("Ingredients")
-                                    .fontWeight(.bold)
-                                ForEach(mealDetail.ingredients) { ingredient in
-                                    HStack {
-                                        Text(ingredient.ingredient)
-                                        Spacer()
-                                        Text(ingredient.measure)
-                                    }
+                    if let mealDetail = model.mealDetail {
+                        VStack(spacing: 0) {
+                            AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                            } placeholder: {
+                                ZStack {
+                                    Color.gray
+                                        .opacity(0.1)
+                                    ProgressView()
+                                        .controlSize(.large)
                                 }
-                                .padding(.horizontal)
                             }
-                            .padding(.vertical)
+                            .frame(width: reader.size.width, height: 250)
+                            .clipShape(RoundedRectangle(cornerRadius: 18))
+                            ScrollView(showsIndicators: false) {
+                                VStack(alignment: .leading, spacing: 16) {
+                                    Text(mealDetail.strMeal)
+                                        .font(.headline)
+                                        .fontWeight(.bold)
+                                    Text(mealDetail.strInstructions.trimmingCharacters(in: .whitespacesAndNewlines))
+                                    Text("Ingredients")
+                                        .fontWeight(.bold)
+                                    ForEach(mealDetail.ingredients) { ingredient in
+                                        HStack {
+                                            Text(ingredient.ingredient)
+                                            Spacer()
+                                            Text(ingredient.measure)
+                                        }
+                                    }
+                                    .padding(.horizontal)
+                                }
+                                .padding(.vertical)
+                                .padding(.bottom, 50)
+                            }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
                     VStack {
                         HStack {
@@ -73,6 +75,17 @@ struct RecipeDetailView: View {
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
+        .alert("Error", isPresented: $model.showAlert) {
+            Button("OK") {
+                model.errorMessage = ""
+                dismiss()
+            }
+        } message: {
+            Text(model.errorMessage)
+        }
+        .task {
+            await model.fetch(by: meal.idMeal)
+        }
     }
 }
 

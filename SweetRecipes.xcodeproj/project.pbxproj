@@ -28,6 +28,8 @@
 		EB9645B92C4712AF0070B9D3 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645B82C4712AF0070B9D3 /* APIRequest.swift */; };
 		EB9645BB2C47146C0070B9D3 /* MealViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645BA2C47146C0070B9D3 /* MealViewModel.swift */; };
 		EB9645BD2C4723000070B9D3 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645BC2C4723000070B9D3 /* RequestError.swift */; };
+		EB9645BF2C4758920070B9D3 /* MealDetailResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645BE2C4758920070B9D3 /* MealDetailResource.swift */; };
+		EB9645C12C47599D0070B9D3 /* MealDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9645C02C47599D0070B9D3 /* MealDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		EB9645B82C4712AF0070B9D3 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		EB9645BA2C47146C0070B9D3 /* MealViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewModel.swift; sourceTree = "<group>"; };
 		EB9645BC2C4723000070B9D3 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
+		EB9645BE2C4758920070B9D3 /* MealDetailResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailResource.swift; sourceTree = "<group>"; };
+		EB9645C02C47599D0070B9D3 /* MealDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				EB9645BA2C47146C0070B9D3 /* MealViewModel.swift */,
+				EB9645C02C47599D0070B9D3 /* MealDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				EB9645B42C4709190070B9D3 /* MealsResource.swift */,
+				EB9645BE2C4758920070B9D3 /* MealDetailResource.swift */,
 			);
 			path = ModelResources;
 			sourceTree = "<group>";
@@ -359,6 +365,7 @@
 			files = (
 				EB9645BD2C4723000070B9D3 /* RequestError.swift in Sources */,
 				EB3869C42C44B6F4004C246C /* ResultWrapper.swift in Sources */,
+				EB9645C12C47599D0070B9D3 /* MealDetailViewModel.swift in Sources */,
 				EB9645BB2C47146C0070B9D3 /* MealViewModel.swift in Sources */,
 				EB8614EE2C458DBF001C80C0 /* RecipeDetailView.swift in Sources */,
 				EB9645B92C4712AF0070B9D3 /* APIRequest.swift in Sources */,
@@ -371,6 +378,7 @@
 				EB9645B12C46FFF50070B9D3 /* APIResource.swift in Sources */,
 				EB9645B72C4710F60070B9D3 /* NetworkRequest.swift in Sources */,
 				EB38698C2C44ACB0004C246C /* SweetRecipesApp.swift in Sources */,
+				EB9645BF2C4758920070B9D3 /* MealDetailResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
