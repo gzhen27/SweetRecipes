@@ -19,20 +19,34 @@ struct RecipeDetailView: View {
                 ZStack {
                     if let mealDetail = model.mealDetail {
                         VStack(spacing: 0) {
-                            AsyncImage(url: URL(string: mealDetail.imageUrl)) { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                            } placeholder: {
+                            if !mealDetail.imageUrl.isEmpty {
+                                AsyncImage(url: URL(string: mealDetail.imageUrl)) { image in
+                                    image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                } placeholder: {
+                                    ZStack {
+                                        Color.gray
+                                            .opacity(0.1)
+                                        ProgressView()
+                                            .controlSize(.large)
+                                    }
+                                }
+                                .frame(width: reader.size.width, height: 250)
+                                .clipShape(RoundedRectangle(cornerRadius: 18))
+                            } else {
                                 ZStack {
                                     Color.gray
-                                        .opacity(0.1)
-                                    ProgressView()
-                                        .controlSize(.large)
+                                    VStack {
+                                        Text("NO")
+                                        Text("Image")
+                                    }
+                                    .foregroundStyle(Color.black)
                                 }
+                                .opacity(0.2)
+                                .frame(width: reader.size.width, height: 250)
+                                .clipShape(RoundedRectangle(cornerRadius: 18))
                             }
-                            .frame(width: reader.size.width, height: 250)
-                            .clipShape(RoundedRectangle(cornerRadius: 18))
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 16) {
                                     Text(mealDetail.name)

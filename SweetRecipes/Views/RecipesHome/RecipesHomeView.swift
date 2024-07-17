@@ -20,18 +20,31 @@ struct RecipesHomeView: View {
                                 RecipeDetailView(id: meal.id)
                             } label: {
                                 VStack(spacing: 2) {
-                                    AsyncImage(url: URL(string: meal.imageUrl)) { image in
-                                        image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                    } placeholder: {
+                                    if !meal.imageUrl.isEmpty {
+                                        AsyncImage(url: URL(string: meal.imageUrl)) { image in
+                                            image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                        } placeholder: {
+                                            ZStack {
+                                                Color.gray
+                                                    .opacity(0.2)
+                                                ProgressView()
+                                            }
+                                        }
+                                        .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20)
+                                    } else {
                                         ZStack {
                                             Color.gray
-                                                .opacity(0.2)
-                                            ProgressView()
+                                            VStack {
+                                                Text("NO")
+                                                Text("Image")
+                                            }
+                                            .foregroundStyle(Color.black)
                                         }
+                                        .opacity(0.2)
+                                        .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20)
                                     }
-                                    .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20)
                                     HStack() {
                                         Text(meal.name)
                                             .font(.footnote)
@@ -48,6 +61,7 @@ struct RecipesHomeView: View {
                             
                         }
                     }
+                    .padding(.bottom, 50)
                 }
                 .padding(.horizontal)
                 .ignoresSafeArea(edges: .bottom)

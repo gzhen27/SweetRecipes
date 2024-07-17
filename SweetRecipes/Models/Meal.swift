@@ -23,6 +23,6 @@ struct Meal: Codable {
     }
     
     var imageUrl: String {
-        strMealThumb != nil ? strMealThumb!.trimmingCharacters(in: .whitespaces) : "unknown"
+        strMealThumb != nil ? strMealThumb!.trimmingCharacters(in: .whitespaces) : ""
     }
 }

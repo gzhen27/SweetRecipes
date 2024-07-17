@@ -56,19 +56,19 @@ struct MealDetail: Codable {
     let strMeasure20: String?
     
     var id: String {
-        idMeal != nil ? idMeal! : "unknown"
+        idMeal != nil ? idMeal!.trimmingCharacters(in: .whitespaces) : "unknown"
     }
     
     var name: String {
-        strMeal != nil ? strMeal! : "unknown"
+        strMeal != nil ? strMeal!.trimmingCharacters(in: .whitespaces) : "unknown"
     }
     
     var imageUrl: String {
-        strMealThumb != nil ? strMealThumb! : "unknown"
+        strMealThumb != nil ? strMealThumb!.trimmingCharacters(in: .whitespaces) : ""
     }
     
     var instructions: String {
-        strInstructions != nil ? strInstructions! : "unknown"
+        strInstructions != nil ? strInstructions!.trimmingCharacters(in: .whitespaces) : "unknown"
     }
 }
 
