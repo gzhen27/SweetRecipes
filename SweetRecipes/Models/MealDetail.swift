@@ -8,10 +8,12 @@
 import Foundation
 
 struct MealDetail: Codable {
-    let idMeal: String
-    let strMeal: String
-    let strMealThumb: String
-    let strInstructions: String
+    // Since the types info are missing from the API docs, we will use all optionals to avoid any null values.
+    // Theoretically, the idMeal and strMeal values should not be null, but we should not fully reply on the APIs, and ahould handle all edge cases on our ends.
+    let idMeal: String?
+    let strMeal: String?
+    let strMealThumb: String?
+    let strInstructions: String?
     let strIngredient1: String?
     let strIngredient2: String?
     let strIngredient3: String?
@@ -52,6 +54,22 @@ struct MealDetail: Codable {
     let strMeasure18: String?
     let strMeasure19: String?
     let strMeasure20: String?
+    
+    var id: String {
+        idMeal != nil ? idMeal! : "unknown"
+    }
+    
+    var name: String {
+        strMeal != nil ? strMeal! : "unknown"
+    }
+    
+    var imageUrl: String {
+        strMealThumb != nil ? strMealThumb! : "unknown"
+    }
+    
+    var instructions: String {
+        strInstructions != nil ? strInstructions! : "unknown"
+    }
 }
 
 extension MealDetail {

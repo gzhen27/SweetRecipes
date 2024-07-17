@@ -19,7 +19,7 @@ struct RecipeDetailView: View {
                 ZStack {
                     if let mealDetail = model.mealDetail {
                         VStack(spacing: 0) {
-                            AsyncImage(url: URL(string: mealDetail.strMealThumb)) { image in
+                            AsyncImage(url: URL(string: mealDetail.imageUrl)) { image in
                                 image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
@@ -35,10 +35,10 @@ struct RecipeDetailView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 18))
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 16) {
-                                    Text(mealDetail.strMeal)
+                                    Text(mealDetail.name)
                                         .font(.headline)
                                         .fontWeight(.bold)
-                                    Text(mealDetail.strInstructions.trimmingCharacters(in: .whitespacesAndNewlines))
+                                    Text(mealDetail.instructions.trimmingCharacters(in: .whitespacesAndNewlines))
                                     Text("Ingredients")
                                         .fontWeight(.bold)
                                     ForEach(mealDetail.ingredients) { ingredient in
