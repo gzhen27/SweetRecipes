@@ -19,44 +19,7 @@ struct RecipesHomeView: View {
                             NavigationLink {
                                 RecipeDetailView(id: meal.id)
                             } label: {
-                                VStack(spacing: 2) {
-                                    if !meal.imageUrl.isEmpty {
-                                        AsyncImage(url: URL(string: meal.imageUrl)) { image in
-                                            image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                        } placeholder: {
-                                            ZStack {
-                                                Color.gray
-                                                    .opacity(0.2)
-                                                ProgressView()
-                                            }
-                                        }
-                                        .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20)
-                                    } else {
-                                        ZStack {
-                                            Color.gray
-                                            VStack {
-                                                Text("NO")
-                                                Text("Image")
-                                            }
-                                            .foregroundStyle(Color.black)
-                                        }
-                                        .opacity(0.2)
-                                        .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20)
-                                    }
-                                    HStack() {
-                                        Text(meal.name)
-                                            .font(.footnote)
-                                            .fontWeight(.medium)
-                                            .padding(.horizontal)
-                                            .frame(width: reader.size.width / 2 - 20, height: 50)
-                                    }
-                                    .background(Color("CardBackground"))
-                                    .foregroundStyle(Color("CardContent"))
-                                }
-                                .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20 + 50)
-                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                RecipeCard(name: meal.name, imageUrl: meal.imageUrl, length: reader.size.width / 2 - 20)
                             }
                             
                         }
@@ -67,30 +30,30 @@ struct RecipesHomeView: View {
                 .ignoresSafeArea(edges: .bottom)
             }
             .navigationTitle("Sweet Recipes")
-            .alert("Error", isPresented: $model.showAlert) {
-                Button("OK") {
-                    model.errorMessage = ""
-                }
-            } message: {
-                Text(model.errorMessage)
-            }
-            .toolbar {
-                Button {
-                    Task {
-                        await model.reload()
-                    }
-                } label: {
-                    Image(systemName: "arrow.clockwise")
-                        .frame(width: 38, height: 38)
-                        .foregroundStyle(Color("AccentColor"))
-                }
-            }
+            .toolbar { refreshButton }
         }
         .task {
             await model.reload()
         }
         .refreshable {
             await model.reload()
+        }
+        .alert("Error", isPresented: $model.showAlert) {
+            Button("OK") { model.errorMessage = "" }
+        } message: {
+            Text(model.errorMessage)
+        }
+    }
+    
+    var refreshButton: some View {
+        Button {
+            Task {
+                await model.reload()
+            }
+        } label: {
+            Image(systemName: "arrow.clockwise")
+                .frame(width: 38, height: 38)
+                .foregroundStyle(Color("AccentColor"))
         }
     }
 }
