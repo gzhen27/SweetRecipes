@@ -13,6 +13,15 @@ struct RecipeDetailView: View {
     
     let id: String
     
+    var swipeRight: some Gesture {
+        DragGesture()
+            .onEnded { value in
+                if value.translation.width > 0 && value.translation.height > -20 && value.translation.height < 20 {
+                    dismiss()
+                }
+            }
+    }
+    
     var body: some View {
         VStack {
             GeometryReader { reader in
@@ -33,7 +42,8 @@ struct RecipeDetailView: View {
                                     }
                                 }
                                 .frame(width: reader.size.width, height: 250)
-                                .clipShape(RoundedRectangle(cornerRadius: 18))
+                                .clipShape(Rectangle())
+                                .shadow(color: Color("AccentColor").opacity(0.5), radius: 20)
                             } else {
                                 ZStack {
                                     Color.gray
@@ -45,7 +55,7 @@ struct RecipeDetailView: View {
                                 }
                                 .opacity(0.2)
                                 .frame(width: reader.size.width, height: 250)
-                                .clipShape(RoundedRectangle(cornerRadius: 18))
+                                .clipShape(Rectangle())
                             }
                             ScrollView(showsIndicators: false) {
                                 VStack(alignment: .leading, spacing: 16) {
@@ -53,33 +63,46 @@ struct RecipeDetailView: View {
                                         .font(.headline)
                                         .fontWeight(.bold)
                                     Text(mealDetail.instructions.trimmingCharacters(in: .whitespacesAndNewlines))
-                                    Text("Ingredients")
-                                        .fontWeight(.bold)
+                                    HStack(alignment: .center) {
+                                        Text("Ingredients")
+                                            .fontWeight(.bold)
+                                        Spacer()
+                                        Text("\(mealDetail.ingredients.count) items")
+                                            .opacity(0.5)
+                                    }
+                                    .padding(.vertical)
+                                    Divider()
                                     ForEach(mealDetail.ingredients) { ingredient in
                                         HStack {
                                             Text(ingredient.ingredient)
                                             Spacer()
                                             Text(ingredient.measure)
                                         }
+                                        Divider()
                                     }
                                     .padding(.horizontal)
                                 }
-                                .padding(.vertical)
-                                .padding(.bottom, 50)
+                                .padding(.vertical, 40)
                             }
                             .padding(.horizontal)
                         }
                     }
                     VStack {
                         HStack {
-                            Image(systemName: "arrow.backward")
-                                .font(.system(size: 36, weight: .light))
-                                .foregroundColor(.white)
-                                .padding(.leading, 16)
-                                .padding(.top, 48)
-                                .onTapGesture {
-                                    dismiss()
+                            Button {
+                                dismiss()
+                            } label: {
+                                ZStack {
+                                    Circle()
+                                        .frame(width: 38, height: 38)
+                                        .foregroundStyle(Color("ButtonBackground"))
+                                        .opacity(0.6)
+                                    Text("X")
+                                        .foregroundStyle(Color("ButtonContent"))
                                 }
+                                .padding(.leading, 16)
+                                .padding(.top, 40)
+                            }
                             Spacer()
                         }
                         Spacer()
@@ -89,6 +112,10 @@ struct RecipeDetailView: View {
         }
         .ignoresSafeArea()
         .navigationBarBackButtonHidden()
+        .onTapGesture(count: 2, perform: {
+            dismiss()
+        })
+        .gesture(swipeRight)
         .alert("Error", isPresented: $model.showAlert) {
             Button("OK") {
                 model.errorMessage = ""

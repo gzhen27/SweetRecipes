@@ -51,9 +51,9 @@ struct RecipesHomeView: View {
                                             .fontWeight(.medium)
                                             .padding(.horizontal)
                                             .frame(width: reader.size.width / 2 - 20, height: 50)
-                                            .foregroundStyle(Color.black)
                                     }
-                                    .background(Color.red.opacity(0.1))
+                                    .background(Color("CardBackground"))
+                                    .foregroundStyle(Color("CardContent"))
                                 }
                                 .frame(width: reader.size.width / 2 - 20, height: reader.size.width / 2 - 20 + 50)
                                 .clipShape(RoundedRectangle(cornerRadius: 12))
@@ -82,6 +82,7 @@ struct RecipesHomeView: View {
                 } label: {
                     Image(systemName: "arrow.clockwise")
                         .frame(width: 38, height: 38)
+                        .foregroundStyle(Color("AccentColor"))
                 }
             }
         }
