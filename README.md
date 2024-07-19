@@ -37,7 +37,12 @@ If there are any issues for rendering the previews, please make sure these files
 
 <img width="1518" alt="Screenshot 2024-07-18 at 10 08 43 PM" src="https://github.com/user-attachments/assets/9337493d-dd82-49d3-9ec0-98fd45feb6d3">
 
+## Caching data strategy
+**All downloaded images are cached in-memory, and no network calls for the same image urls in the later uses until the app is terminated.**
 
+This caching strategy will prevent the same image network calls on the detail page, so it cached all images on the home view when browsing the recipes, and use the cached images on the detail view. It is also helpful when the LazyVGrid re-render the dropped items, as it will use the cached image when rendering, if the cached image exist. 
+
+Restart the app will empty all cached images, and fetch the images again. This way we can free the used memory and fetch the newest images from the server in case they gets updated on the server. 
 
 
 

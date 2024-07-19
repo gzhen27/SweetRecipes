@@ -19,8 +19,8 @@ struct RecipeDetailView: View {
                 ZStack {
                     if let mealDetail = model.mealDetail {
                         VStack(spacing: 0) {
-                            if !mealDetail.imageUrl.isEmpty {
-                                CardImageView(imageUrl: mealDetail.imageUrl, widht: reader.size.width, height: 250, contentMode: .fill)
+                            if let url = URL(string: mealDetail.imageUrl) {
+                                CardImageView(url: url, widht: reader.size.width, height: 250, contentMode: .fill)
                                 .clipShape(Rectangle())
                                 .shadow(color: Color("AccentColor").opacity(0.2), radius: 20)
                             } else {

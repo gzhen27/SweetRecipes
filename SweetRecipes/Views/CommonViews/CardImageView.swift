@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CardImageView: View {
-    let imageUrl: String
+    let url: URL
     let widht: CGFloat
     let height: CGFloat
     let contentMode: ContentMode
     
     var body: some View {
-        AsyncImage(url: URL(string: imageUrl)) { phase in
+        CachedAsyncImage(url: url) { phase in
             switch phase {
             case .empty:
                 ZStack {
@@ -37,5 +37,5 @@ struct CardImageView: View {
 }
 
 #Preview {
-    CardImageView(imageUrl: "invalid url", widht: 200, height: 200, contentMode: .fit)
+    CardImageView(url: URL(string: MealDetail.previewData.imageUrl)!, widht: 250, height: 250, contentMode: .fit)
 }

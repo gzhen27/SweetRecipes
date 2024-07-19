@@ -16,8 +16,8 @@ struct RecipeCard: View {
     
     var body: some View {
         VStack(spacing: 2) {
-            if !imageUrl.isEmpty {
-                CardImageView(imageUrl: imageUrl, widht: length, height: length, contentMode: .fit)
+            if let url = URL(string: imageUrl) {
+                CardImageView(url: url, widht: length, height: length, contentMode: .fit)
             } else {
                 NoImagePlaceHolderView(width: length, height: length)
             }
