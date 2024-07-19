@@ -22,10 +22,8 @@ struct CachedAsyncImage<Content>: View where Content: View {
     
     var body: some View {
         if let cachedImage = ImageCached[url] {
-            let _ = print("Cached Image: \(url)")
             content(.success(cachedImage))
         } else {
-            let _ = print("Fetching Image: \(url)")
             AsyncImage(url: url, scale: scale, transaction: transaction) { phase in
                 cache(phase: phase)
             }
