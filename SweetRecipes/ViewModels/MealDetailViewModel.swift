@@ -22,7 +22,6 @@ class MealDetailViewModel: ObservableObject {
     @MainActor
     private func fetch(by id: String) async {
         guard !isLoading else { return }
-        defer { isLoading = false }
         
         isLoading = true
         let resource = MealDetailResource(id: id)
@@ -32,10 +31,13 @@ class MealDetailViewModel: ObservableObject {
             do {
                 let result = try await request.excute()
                 mealDetail = result[0]
+                isLoading = false
             } catch let error as RequestError {
+                isLoading = false
                 showAlert = true
                 errorMessage = error.localizedDescription
             } catch {
+                isLoading = false
                 showAlert = true
                 errorMessage = "An unknown error has occurred."
             }

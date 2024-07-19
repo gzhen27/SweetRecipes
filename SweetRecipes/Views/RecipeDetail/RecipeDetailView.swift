@@ -17,17 +17,26 @@ struct RecipeDetailView: View {
         VStack {
             GeometryReader { reader in
                 ZStack {
-                    if let mealDetail = model.mealDetail {
-                        VStack(spacing: 0) {
-                            if let url = URL(string: mealDetail.imageUrl) {
-                                CardImageView(url: url, widht: reader.size.width, height: 250, contentMode: .fill)
-                                .clipShape(Rectangle())
-                                .shadow(color: Color("AccentColor").opacity(0.2), radius: 20)
-                            } else {
-                                NoImagePlaceHolderView(width: reader.size.width, height: 250)
+                    if model.isLoading {
+                        VStack {
+                            ProgressView()
+                                .controlSize(.large)
+                        }
+                        .frame(width: reader.size.width, height: reader.size.height)
+                        .padding()
+                    } else {
+                        if let mealDetail = model.mealDetail {
+                            VStack(spacing: 0) {
+                                if let url = URL(string: mealDetail.imageUrl) {
+                                    CardImageView(url: url, widht: reader.size.width, height: 250, contentMode: .fill)
                                     .clipShape(Rectangle())
+                                    .shadow(color: Color("AccentColor").opacity(0.2), radius: 20)
+                                } else {
+                                    NoImagePlaceHolderView(width: reader.size.width, height: 250)
+                                        .clipShape(Rectangle())
+                                }
+                                RecipeContentView(mealDetail: mealDetail)
                             }
-                            RecipeContentView(mealDetail: mealDetail)
                         }
                     }
                     closeButton
