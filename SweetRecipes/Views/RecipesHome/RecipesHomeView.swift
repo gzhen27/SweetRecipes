@@ -32,6 +32,7 @@ struct RecipesHomeView: View {
             .navigationTitle("Sweet Recipes")
             .toolbar { refreshButton }
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .task {
             await model.reload()
         }

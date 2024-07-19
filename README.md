@@ -26,6 +26,7 @@ Requirements:
 
 Compatibility: 
 - iPhone: iOS 15.0 or later
+- iPad: iOS 15.0 or later
 
 ## For preview env:
 There are two data files that being used for all previews, the previews will not build without these files:
