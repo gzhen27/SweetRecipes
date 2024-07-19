@@ -14,15 +14,22 @@ struct CardImageView: View {
     let contentMode: ContentMode
     
     var body: some View {
-        AsyncImage(url: URL(string: imageUrl)) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: contentMode)
-        } placeholder: {
-            ZStack {
-                Color.gray
-                    .opacity(0.2)
-                ProgressView()
+        AsyncImage(url: URL(string: imageUrl)) { phase in
+            switch phase {
+            case .empty:
+                ZStack {
+                    Color.gray
+                        .opacity(0.2)
+                    ProgressView()
+                }
+            case .success(let image):
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: contentMode)
+            case .failure(_):
+                NoImagePlaceHolderView(width: widht, height: height)
+            @unknown default:
+                NoImagePlaceHolderView(width: widht, height: height)
             }
         }
         .frame(width: widht, height: height)

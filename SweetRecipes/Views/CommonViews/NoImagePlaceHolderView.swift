@@ -18,7 +18,7 @@ struct NoImagePlaceHolderView: View {
                 Text("NO")
                 Text("Image")
             }
-            .foregroundStyle(Color.black)
+            .foregroundStyle(Color("AccentColor"))
         }
         .opacity(0.2)
         .frame(width: width, height: height)
