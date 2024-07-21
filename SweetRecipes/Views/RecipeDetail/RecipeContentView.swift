@@ -8,20 +8,37 @@
 import SwiftUI
 
 struct RecipeContentView: View {
+    @State private var cateogry: DetailCategory = .instruction
     let mealDetail: MealDetail
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading) {
+            Group {
                 Text(mealDetail.name)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                Text(mealDetail.instructions)
-                IngredientsView(ingredients: mealDetail.ingredients)
+                    .font(.title2)
+                    .bold()
+                Picker("", selection: $cateogry) {
+                    Text("Instructions").tag(DetailCategory.instruction)
+                    Text("Ingredients").tag(DetailCategory.ingredient)
+                }
+                .pickerStyle(.segmented)
+                .padding(.vertical)
             }
-            .padding(.vertical, 40)
+            .padding(.horizontal)
+            ScrollViewReader { proxy in
+                ScrollView(showsIndicators: false) {
+                    switch cateogry {
+                    case .instruction:
+                        InstructionsView(instructions: mealDetail.instructions, scrollViewProxy: proxy)
+                    case .ingredient:
+                        IngredientsView(ingredients: mealDetail.ingredients, scrollViewProxy: proxy)
+                    }
+                }
+                .padding(.horizontal)
+            }
         }
-        .padding(.horizontal)
+        .padding(.top, 20)
+        .padding(.bottom, 40)
     }
 }
 

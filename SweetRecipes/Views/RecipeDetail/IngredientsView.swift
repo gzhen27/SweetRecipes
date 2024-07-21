@@ -9,30 +9,40 @@ import SwiftUI
 
 struct IngredientsView: View {
     let ingredients: [Ingredient]
+    let scrollViewProxy: ScrollViewProxy
     
     var body: some View {
-        HStack(alignment: .lastTextBaseline) {
-            Text("Ingredients")
-                .fontWeight(.bold)
-            Spacer()
-            Text("\(ingredients.count) items")
-                .font(.callout)
-                .opacity(0.5)
-        }
-        .padding(.top)
-        Divider()
-        ForEach(ingredients) { ingredient in
-            HStack {
-                Text(ingredient.ingredient)
+        VStack {
+            HStack(alignment: .lastTextBaseline) {
+                Text("Ingredients")
+                    .fontWeight(.bold)
+                    .id(0)
                 Spacer()
-                Text(ingredient.measure)
+                Text("\(ingredients.count) items")
+                    .font(.callout)
+                    .opacity(0.5)
             }
+            .padding(.top)
             Divider()
+            ForEach(ingredients) { ingredient in
+                HStack {
+                    Text(ingredient.ingredient)
+                    Spacer()
+                    Text(ingredient.measure)
+                }
+                Divider()
+            }
+            .padding(.horizontal)
+            .padding(.top, 4)
         }
-        .padding(.horizontal)
+        .onAppear(perform: {
+            scrollViewProxy.scrollTo(0)
+        })
     }
 }
 
 #Preview {
-    IngredientsView(ingredients: MealDetail.previewData.ingredients)
+    ScrollViewReader { proxy in
+        IngredientsView(ingredients: MealDetail.previewData.ingredients, scrollViewProxy: proxy)
+    }
 }

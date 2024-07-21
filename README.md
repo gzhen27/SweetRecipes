@@ -8,7 +8,7 @@
 **The beta app currently has two views:**
 - Home View:
   - display a list of dessert recipe cards, the card contains a hero image and the recipe name under it.
-  - a refresh button on the top-right of the toolbar(also this view is refreshable), it is used to refresh the data when error occurred. In case when recipes are fetched and dispalyed successfully on the screen, the refresh functionality won't make the api call again to retrieve the same data. 
+  - a refresh button on the top-right of the toolbar(also this view is refreshable), it is used to refresh the data when error occurred.
   - click any card will navigate to its detail view.
  
 - Detail View:

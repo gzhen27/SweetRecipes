@@ -44,9 +44,6 @@ struct RecipesHomeView: View {
         .task {
             await model.reload()
         }
-        .refreshable {
-            await model.reload()
-        }
         .alert("Error", isPresented: $model.showAlert) {
             Button("OK") { model.errorMessage = "" }
         } message: {

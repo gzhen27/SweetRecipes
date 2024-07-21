@@ -66,13 +66,16 @@ struct MealDetail: Codable {
     var imageUrl: String {
         strMealThumb != nil ? strMealThumb!.trimmingCharacters(in: .whitespaces) : ""
     }
-    
-    var instructions: String {
-        strInstructions != nil ? strInstructions!.trimmingCharacters(in: .whitespaces) : "unknown"
-    }
 }
 
 extension MealDetail {
+    var instructions: [String] {
+        guard let strInstructions = strInstructions else { return [] }
+        return strInstructions
+            .components(separatedBy: .newlines)
+            .filter { !$0.isEmpty }
+    }
+    
     var ingredients: [Ingredient] {
         var ingredients: [Ingredient] = []
         
@@ -108,4 +111,10 @@ extension MealDetail {
             ingredients.append(Ingredient(ingredient: trimmedIngredientText, measure: trimmedMeasureText))
         }
     }
+}
+
+
+enum DetailCategory {
+    case instruction
+    case ingredient
 }

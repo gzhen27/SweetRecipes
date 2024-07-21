@@ -16,9 +16,7 @@ class MealViewModel: ObservableObject {
     //MARK: - Async functions
     @MainActor
     func reload() async {
-        if meals.isEmpty {
-            await fetch()
-        }
+        await fetch()
     }
     
     //MARK: - Helper functions
