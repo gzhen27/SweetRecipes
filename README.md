@@ -1,14 +1,14 @@
 # Sweet Recipes
 
-**Sweet Recipes is a beta iOS app that allows users to explore dessert recipes from the [TheMealDB](https://themealdb.com/api.php)**
+**Sweet Recipes is a beta iOS app that allows users to explore dessert recipes**
 
-![SweetRecipes](https://github.com/user-attachments/assets/1f2f7d95-232c-4473-8d66-45a48546fe62)
+![SweetRecipes](https://github.com/user-attachments/assets/37dcbd7f-2727-442e-9c1a-a9b6186ed0a4)
 
 ## Details: 
 **The beta app currently has two views:**
 - Home View:
   - display a list of dessert recipe cards, the card contains a hero image and the recipe name under it.
-  - a refresh button on the top-right of the toolbar(also this view is refreshable), it is used to refresh the data when error occurred.
+  - a refresh button on the top-right of the toolbar, it is used to refresh the data when error occurred.
   - click any card will navigate to its detail view.
  
 - Detail View:
