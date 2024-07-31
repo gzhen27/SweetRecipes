@@ -55,7 +55,7 @@ struct CachedAsyncImage<Content>: View where Content: View {
     .frame(width: 250, height: 250)
 }
 
-fileprivate class ImageCached {
+fileprivate actor ImageCached {
     static private var cache: [URL: Image] = [:]
     
     static subscript(url: URL) -> Image? {
