@@ -55,6 +55,8 @@ struct MealDetail: Codable {
     let strMeasure19: String?
     let strMeasure20: String?
     
+    
+    
     var id: String {
         idMeal != nil ? idMeal!.trimmingCharacters(in: .whitespaces) : "unknown"
     }

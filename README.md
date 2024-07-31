@@ -19,6 +19,9 @@
     -  swipe from left to right action
 
 
+## Swift Concurrency: https://github.com/gzhen27/SwiftConcurrency
+checkout this repo for better understanding Swift Concurrency and improve the Sweet Recipes app with Swift Concurrency.
+
 ## Development:
 Requirements: 
 - Xcode 15.4
